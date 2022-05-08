@@ -26,7 +26,7 @@ class KyKClickerMod(loader.Module):
     """Clicker"""
 
     strings = {"name": "KyKClicker"}
-    _chat = 1543388590
+    _chat = 1615368859
     _request_timeout = 3
 
     async def client_ready(self, client, db) -> None:
