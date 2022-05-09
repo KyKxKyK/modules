@@ -35,7 +35,7 @@ class KyKClickerMod(loader.Module):
         self._tg_id = (await client.get_me()).id
 
     async def startkykcmd(self, message: Message):
-        """Для начала работы"""
+        """Для запуска"""
         first_start = True
         self._db.set(self.strings["name"], "state", True)
         
@@ -43,9 +43,9 @@ class KyKClickerMod(loader.Module):
             if first_start:
                 await message.edit("👩‍💼 <b>Ищем твою маму...</b>")
 
-            for text in {"Мой генератор #KYKNET", "Мой бизнес #KYKNET", "Моя ферма #KYKNET", "Мой сад #KYKNET"}:
+            for text in {"Мой генератор [AFK]", "Мой бизнес [AFK]", "Моя ферма [AFK]", "Мой сад [AFK]"}:
                 await self._client.send_message(self._chat, text)
-                await asyncio.sleep(5)
+                await asyncio.sleep(3)
 
             if first_start:
                 await message.edit("🚽 <b>Жду ответ бота...</b>")
@@ -90,7 +90,7 @@ class KyKClickerMod(loader.Module):
             if first_start:
                 for i in {"farm", "garden", "business", "generator"}:
                     if i not in messages:
-                        await message.edit("🚫 <b>Не могу найти твою мать</b>")
+                        await message.edit("🚫 <b>Не могу найти сообщения</b>")
                         return
 
             if first_start:
@@ -101,43 +101,42 @@ class KyKClickerMod(loader.Module):
                     f"<b>Бизнес</b>: <a href=\"https://t.me/c/{self._chat}/{messages['business'].id}\">#{messages['business'].id}</a>\n\n"
                 )
 
-                await message.edit("✅ <b>Отцы найдены!</b>\n<i>Запускаю мясорубку...</i>")
+                await message.edit("✅ <b>Мама найденa! Аххаахах нет шучу.</b>\n<i>Запускаю афк режим...</i>")
 
                 await self.inline.form(
                     message=utils.get_chat_id(message),
-                    text=f"🍏 <b>Бля, вроде работает... У тебя мать шлюха кстати</b>\n\n{messages_formatted}",
-                    reply_markup=[[{"text": "🚨 Остановить", "data": "kykfarmstop"}]],
+                    text=f"🍏 <b>Блять , вроде работает. Аминь нахуй чтобы не сломалось...</b>\n\n{messages_formatted}",
+                    reply_markup=[[{"text": "🚨 Я гей", "data": "kykfarmstop"}]],
                 )
 
-                async def click(message_id: int, data: bytes):
-                    try:
-                        await self._client(
-                            GetBotCallbackAnswerRequest(
-                                self._chat,
-                                message_id,
-                                data=data,
-                            )
+            async def click(message_id: int, data: bytes):
+                try:
+                    await self._client(
+                        GetBotCallbackAnswerRequest(
+                            self._chat,
+                            message_id,
+                            data=data,
                         )
-                    except BotResponseTimeoutError:
-                        pass  # Ignore error bc bot doesn't answer callback query
+                    )
+                except BotResponseTimeoutError:
+                    pass  # Ignore error bc bot doesn't answer callback query
 
-                    return True
+                return True
 
-                for message_id, data in [
-                    (messages["generator"].id, b"payTaxesGenerator"),
-                    (messages["business"].id, b"payTaxes"),
-                    (messages["farm"].id, b"payTaxesFarm"),
-                    (messages["garden"].id, b"pourGarden"),
-                    (messages["garden"].id, b"payTaxesGarden"),
-                ]:
-                    if not await click(message_id, data):
-                        return
+            for message_id, data in [
+                (messages["generator"].id, b"payTaxesGenerator"),
+                (messages["business"].id, b"payTaxes"),
+                (messages["farm"].id, b"payTaxesFarm"),
+                (messages["garden"].id, b"pourGarden"),
+                (messages["garden"].id, b"payTaxesGarden"),
+            ]:
+                if not await click(message_id, data):
+                    return
 
-                    await asyncio.sleep(self._request_timeout)
-
-                await asyncio.sleep(60 * 60)
+                await asyncio.sleep(self._request_timeout)
 
             first_start = False
+            await asyncio.sleep(60 * 60)
 
     async def kyk_callback_handler(self, call: "InlineCall"):  # noqa: F821
         if call.data != "kykfarmstop" or call.from_user.id not in [self._tg_id]:
