@@ -89,8 +89,8 @@ class GitaddMod(loader.Module):
             git_data = '{"message": "Upload file", "content":' + '"' + stout + '"' + '}'
             r = requests.put(url, headers=head, data=git_data)
             if int(r.status_code) == 201:
-                uploaded_to = f'https://github.com/{USERNAME}/{REPO}'
-                uploaded_to_raw = uploaded_to + f'/blob/mine/{fname}'
+                uploaded_to = f'https://raw.githubusercontent.com/{USERNAME}/{REPO}'
+                uploaded_to_raw = uploaded_to + f'/main/{fname}'
                 await utils.answer(message, f"Файл <code>{fname}</code> успешно загружен на <a href=\f'{uploaded_to}\'>репозиторий!</a>\n\nПрямая ссылка: <code>{uploaded_to_raw}</code>")
                 return
             elif int(r.status_code) == 422:
