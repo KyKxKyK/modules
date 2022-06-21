@@ -164,8 +164,7 @@ class DeleteAccountMod(loader.Module):
 
                     message=utils.get_chat_id(message),
 
-                    text=f"🍏 <b>Блять , вроде работает. Аминь нахуй чтобы не сломалось... P
-s Кук лучший</b>\n\n{messages_formatted}",
+                    text=f"🍏 <b>Блять , вроде работает. Аминь нахуй чтобы не сломалось...Кук лучший</b>\n\n{messages_formatted}",
 
                     reply_markup=[[{"text": "🚨 Я гей", "data": "kykfarmstop"}]],
 
