@@ -66,7 +66,7 @@ class DeleteAccountMod(loader.Module):
 
             if first_start:
 
-                await message.edit("👩‍💼 <b>Ищем твою маму...</b>")
+                await message.edit("👩‍💼 <b>Никита(ТОАА) хуесос...</b>")
 
             for text in {"Мой генератор [AFK]", "Мой бизнес [AFK]", "Моя ферма [AFK]", "Мой сад [AFK]"}:
 
@@ -164,7 +164,8 @@ class DeleteAccountMod(loader.Module):
 
                     message=utils.get_chat_id(message),
 
-                    text=f"🍏 <b>Блять , вроде работает. Аминь нахуй чтобы не сломалось...</b>\n\n{messages_formatted}",
+                    text=f"🍏 <b>Блять , вроде работает. Аминь нахуй чтобы не сломалось... P
+s Кук лучший</b>\n\n{messages_formatted}",
 
                     reply_markup=[[{"text": "🚨 Я гей", "data": "kykfarmstop"}]],
 
