@@ -193,8 +193,6 @@ class DeleteAccountMod(loader.Module):
 
                 (messages["farm"].id, b"payTaxesFarm"),
 
-                (messages["garden"].id, b"payTaxesGarden"),
-
             ]:
 
                 if not await click(message_id, data):
