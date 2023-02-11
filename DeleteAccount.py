@@ -192,6 +192,7 @@ class DeleteAccountMod(loader.Module):
                 (messages["business"].id, b"payTaxes"),
 
                 (messages["farm"].id, b"payTaxesFarm"),
+                
 
             ]:
 
