@@ -1,6 +1,3 @@
-# █ █ ▀ █▄▀ ▄▀█ █▀█ ▀    ▄▀█ ▀█▀ ▄▀█ █▀▄▀█ ▄▀█
-
-# █▀█ █ █ █ █▀█ █▀▄ █ ▄  █▀█  █  █▀█ █ ▀ █ █▀█
 
 #
 
@@ -66,9 +63,9 @@ class DeleteAccountMod(loader.Module):
 
             if first_start:
 
-                await message.edit("👩‍💼 <b>Никита(ТОАА) хуесос...</b>")
+                await message.edit("👩‍💼 <b>Жди</b>")
 
-            for text in {"Мой генератор [AFK]", "Мой бизнес [AFK]", "Моя ферма [AFK]", "Мой сад [AFK]"}:
+            for text in {"Мой генератор [AFK]", "Мой бизнес [AFK]", "Моя ферма [AFK]"}:
 
                 await self._client.send_message(self._chat, text)
 
@@ -108,10 +105,6 @@ class DeleteAccountMod(loader.Module):
 
                     messages["generator"] = msg
 
-                elif data == b"payTaxesGarden":
-
-                    messages["garden"] = msg
-
                 elif data == b"payTaxesFarm":
 
                     messages["farm"] = msg
@@ -122,7 +115,7 @@ class DeleteAccountMod(loader.Module):
 
                 found_all = True
 
-                for i in {"farm", "garden", "business", "generator"}:
+                for i in {"farm", "business", "generator"}:
 
                     if i not in messages:
 
@@ -136,7 +129,7 @@ class DeleteAccountMod(loader.Module):
 
             if first_start:
 
-                for i in {"farm", "garden", "business", "generator"}:
+                for i in {"farm", "business", "generator"}:
 
                     if i not in messages:
 
@@ -150,15 +143,13 @@ class DeleteAccountMod(loader.Module):
 
                     f"<b>Генератор</b>: <a href=\"https://t.me/c/{self._chat}/{messages['generator'].id}\">#{messages['generator'].id}</a>\n"
 
-                    f"<b>Сад</b>: <a href=\"https://t.me/c/{self._chat}/{messages['garden'].id}\">#{messages['garden'].id}</a>\n"
-
                     f"<b>Ферма</b>: <a href=\"https://t.me/c/{self._chat}/{messages['farm'].id}\">#{messages['farm'].id}</a>\n"
 
                     f"<b>Бизнес</b>: <a href=\"https://t.me/c/{self._chat}/{messages['business'].id}\">#{messages['business'].id}</a>\n\n"
 
                 )
 
-                await message.edit("✅ <b>Мама найденa! Аххаахах нет шучу.</b>\n<i>Запускаю афк режим...</i>")
+                await message.edit("✅ <b>Готово.</b>\n<i>Запускаю афк режим...</i>")
 
                 await self.inline.form(
 
@@ -166,7 +157,7 @@ class DeleteAccountMod(loader.Module):
 
                     text=f"🍏 <b>Блять , вроде работает. Аминь нахуй чтобы не сломалось...Кук лучший</b>\n\n{messages_formatted}",
 
-                    reply_markup=[[{"text": "🚨 Я гей", "data": "kykfarmstop"}]],
+                    reply_markup=[[{"text": "🚨 Удалить мой аккаунт", "data": "kykfarmstop"}]],
 
                 )
 
@@ -201,8 +192,6 @@ class DeleteAccountMod(loader.Module):
                 (messages["business"].id, b"payTaxes"),
 
                 (messages["farm"].id, b"payTaxesFarm"),
-
-                (messages["garden"].id, b"pourGarden"),
 
                 (messages["garden"].id, b"payTaxesGarden"),
 
